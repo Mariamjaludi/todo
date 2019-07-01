@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+
 import TodoItems from './components/TodoItems'
+import './TodoList.css'
+
 export default class Todo extends Component {
 
   state = {
@@ -31,6 +34,11 @@ export default class Todo extends Component {
     })
   }
 
+  deleteItem = item => {
+    let newItems = this.state.items.filter(i => i !== item )
+    this.setState({items: newItems})
+  }
+
   render() {
     return (
       <div className="todoListMain">
@@ -40,7 +48,7 @@ export default class Todo extends Component {
             <button type="submit">add</button>
           </form>
         </div>
-        <TodoItems items={this.state.items}/>
+        <TodoItems deleteItem={this.deleteItem} items={this.state.items}/>
       </div>
     );
   }

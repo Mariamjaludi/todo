@@ -1,12 +1,17 @@
-import React, { Component } from 'react';
-import TodoItem from './TodoItem'
+import React, { Component } from "react";
+import TodoItem from "./TodoItem";
+import FlipMove from "react-flip-move";
 export default class TodoItems extends Component {
-  render () {
-    const {items} = this.props
+  render() {
+    const { items, deleteItem } = this.props;
     return (
       <ul className="theList">
-      {items.map(item => <TodoItem key={item.key} item={item}/>)}
+        <FlipMove duration={250} easing="ease-out">
+          {items.map(item => (
+            <TodoItem key={item.key} item={item} deleteItem={deleteItem} />
+          ))}
+        </FlipMove>
       </ul>
-    )
+    );
   }
 }
